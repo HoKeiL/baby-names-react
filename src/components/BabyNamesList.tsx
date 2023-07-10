@@ -1,15 +1,5 @@
-import React from 'react';
-import IsGirl from './utils/IsGirl.ts'
-const BabyNamesData = require("./NamesData.json");
+import React from "react";
 
-
-export default function BabyNames():JSX.Element{
-
-
-    return(
-        <>
-            <p>Hello</p>
-        </>
-    );
-
+export default function BabyNames(): JSX.Element {
+  return <></>;
 }
