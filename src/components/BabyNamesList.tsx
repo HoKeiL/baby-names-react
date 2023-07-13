@@ -1,37 +1,29 @@
 import React from "react";
 import namesData from "../data/NamesData.json";
 
+interface Baby {
+  id: number;
+  name: string;
+  sex: string;
+}
+
 
 
 export default function BabyNames(): JSX.Element {
     
-  function getGirlsName(arr: object[]) {
-    const girlsNameArr = [];
+  function getBabyNames(arr: Baby[]): string[] {
+
+    return arr.map((eachBaby) => eachBaby.name + " ").sort()
     
-    for (const eachName of namesData) {
-         if(eachName.sex === "f"){
-            girlsNameArr.push(eachName.name)}
-            
   }
-  return girlsNameArr;
-  }
-  function getBoysName(arr: object[]) {
-    const boysNameArr = [];
-    
-    for (const eachName of namesData) {
-         if(eachName.sex === "m"){
-            boysNameArr.push(eachName.name)}
-            
-  }
-  return boysNameArr;
-  }
+  
 
   return (
     <>
-      
-        <p >{getGirlsName(namesData).sort()}</p>
-        <p >{getBoysName(namesData).sort()}</p>
-      
+      <ul className="allbabynames">
+        <li>{getBabyNames(namesData)}</li>
+      </ul>
+
     </>
   );
 }
