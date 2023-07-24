@@ -1,32 +1,29 @@
 import { useState } from "react";
-import {
-  BabyNameList,
-  SexFilter,
-  filterBySex,
-  filterOutFavourites,
-  filterBySearch,
-  Baby,
-  sortNames,
-  SearchBar,
-} from "./BabyNamesList";
+import { Baby, SexFilter, sortNames } from "./babyName";
+import { byNotInList, bySearch, bySex } from "./filters";
+import unsortedBabyNamesData from "../data/NamesData.json";
 import { useFavourites } from "../hooks/useFavourites";
-import namesData from "../data/NamesData.json";
+import { BabyNameList, SearchBar, FavouritesList } from "./BabyNamesList";
 
-const sortedBabyNames: Baby[] = sortNames(namesData as Baby[]);
+const sortedBabyNames: Baby[] = sortNames(unsortedBabyNamesData as Baby[]);
 
 const BabyNamesApp = () => {
-  //look at Hooks
   const { favourites, addFavourite, removeFavourite } = useFavourites();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSex, setSelectedSex] = useState<SexFilter>("a");
 
-  const mainListToShow = sortedBabyNames;
+  const mainNamesToShow = sortedBabyNames
+    .filter(bySearch(searchTerm))
+    .filter(bySex(selectedSex))
+    .filter(byNotInList(favourites));
 
   return (
     <div className="main">
-      {/* <SearchBar
-                {...{ searchTerm, setSearchTerm, setSelectedSex, selectedSex }}
-            /> */}
-      <hr></hr>
-      <BabyNameList names={mainListToShow} clickHandler={addFavourite} />
+      <SearchBar
+        {...{ searchTerm, setSearchTerm, setSelectedSex, selectedSex }}
+      />
+      <FavouritesList names={favourites} clickHandler={removeFavourite} />
+      <BabyNameList names={mainNamesToShow} clickHandler={addFavourite} />
     </div>
   );
 };

@@ -26,8 +26,10 @@ ul {
   user-select: none;
 }
 
-hr {
-  border: 1px solid rgb(150, 149, 149);
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .girl {
@@ -37,4 +39,77 @@ hr {
 .boy {
   color: rgb(249, 159, 42);
   background-color: lightgoldenrodyellow;
+}
+
+.name {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.controlBar {
+  display: Flex;
+}
+
+.sexButtons {
+  margin: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.maleChooser::before {
+  background: #a0cfee;
+  content: "\01F423";
+}
+.femaleChooser::before {
+  background: #ffc6e5;
+  content: "\01F424";
+}
+.anyChooser::before {
+  background: #dddddd;
+  content: "\01F425";
+}
+
+.chooser::before {
+  padding: 5px;
+  border-radius: 3px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 120%;
+}
+
+.chooser.selected::before {
+  border-bottom: 2px solid black;
+}
+
+.favourites {
+  margin: 30px auto;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #dddddd;
+}
+.favourites span {
+  font-size: 1.4rem;
+  color: #aaa;
+  margin-right: 10px;
+}
+
+footer {
+  border-top: 2px solid #dddddd;
+  color: #dddddd;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 80%;
+  text-align: center;
+}
+
+input {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 auto;
 }

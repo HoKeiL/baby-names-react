@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Baby } from "../components/BabyNamesList";
+import { Baby } from "../components/babyName";
 /** React custom hook to keep track of a list of baby names as favourites, offering also add and remove convenience functions.  */
 export function useFavourites() {
   const [favourites, setFavourites] = useState<Baby[]>([]);

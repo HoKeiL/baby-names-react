@@ -1,36 +1,5 @@
 import React from "react";
-import namesData from "../data/NamesData.json";
-
-export type BabyNameId = number;
-export type Sex = "m" | "f";
-export type SexFilter = Sex | "a";
-export interface Baby {
-  id: BabyNameId;
-  name: string;
-  sex: Sex;
-}
-export function filterBySearch(names: Baby[], searchTerm: string): Baby[] {
-  return searchTerm.trim().length > 0
-    ? names.filter((o) =>
-        o.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : names;
-}
-
-export function filterOutFavourites(
-  names: Baby[],
-  favouritesIds: BabyNameId[]
-): Baby[] {
-  return names.filter((o) => !favouritesIds.includes(o.id));
-}
-
-export function filterBySex(names: Baby[], selectedSex: SexFilter): Baby[] {
-  return names.filter((o) => selectedSex === "a" || selectedSex === o.sex);
-}
-
-export function sortNames(originalNames: Baby[]): Baby[] {
-  return [...originalNames].sort((a, b) => a.name.localeCompare(b.name));
-}
+import { Baby, SexFilter } from "./babyName";
 
 export type NameClickHandler = (nameObj: Baby) => void;
 export const classForName = ({ sex }: { sex: string }) =>
@@ -119,5 +88,28 @@ export function SearchBar({
         </span>
       </div>
     </>
+  );
+}
+
+//favourite list
+
+export interface FavouritesListProps {
+  names: Baby[];
+  clickHandler: NameClickHandler;
+}
+
+export function FavouritesList({
+  names,
+  clickHandler,
+}: FavouritesListProps): JSX.Element {
+  return (
+    <div className="favourites">
+      <span>Favourites: </span>
+      {names.length === 0 ? (
+        <span>Click some names below to add to your shortlist...</span>
+      ) : (
+        <BabyNameList names={names} clickHandler={clickHandler} />
+      )}
+    </div>
   );
 }
