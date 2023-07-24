@@ -1,8 +1,8 @@
-import BabyNames from "./components/BabyNamesList";
-import './App.css';
+import BabyNamesApp from "./components/BNApp";
+import "./App.css";
 
 function App(): JSX.Element {
-  return <BabyNames />;
+  return <BabyNamesApp />;
 }
 
 export default App;
